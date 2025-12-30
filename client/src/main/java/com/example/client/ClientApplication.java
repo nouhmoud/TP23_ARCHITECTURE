@@ -5,9 +5,11 @@ import com.example.client.repositories.ClientRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient; // Import à ajouter
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
+@EnableDiscoveryClient // Annotation à ajouter pour la découverte via Consul
 public class ClientApplication {
 
     public static void main(String[] args) {

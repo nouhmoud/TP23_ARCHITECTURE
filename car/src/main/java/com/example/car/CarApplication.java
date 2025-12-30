@@ -2,11 +2,13 @@ package com.example.car;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient; // Import ajouté
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
+@EnableDiscoveryClient // Annotation ajoutée pour activer la découverte Consul
 public class CarApplication {
 
     public static void main(String[] args) {

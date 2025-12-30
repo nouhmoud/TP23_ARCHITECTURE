@@ -1,16 +1,28 @@
-server:
-  port: 8082
-
 spring:
   application:
-    name: SERVICE-CAR
+    name: service-voiture  # Donnez un nom unique (ex: service-voiture)
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        instance-id: ${spring.application.name}:${random.value}
+        service-name: ${spring.application.name}
+
+  # Configuration H2 (Remplace MySQL pour éviter les erreurs de connexion)
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/carservicedb?createDatabaseIfNotExist=true
-    username: "root"
-    password: ""
+    url: jdbc:h2:mem:voitureDB
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
   jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
     show-sql: true
 
+server:
+  port: 8082 # Utilisez un port différent pour chaque service (ex: 8081 pour Client, 8082 pour Voiture)
